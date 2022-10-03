@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import Button from './components/UI/Button/Button';
 import DemoOutput from './components/Demo/DemoOutput';
@@ -10,9 +10,10 @@ function App() {
 
   console.log('APP RUNNING');
 
-  const toggleParagraphHandler = () => {
+  // using useCallback with an empty array of dependancies means that it will never change and therefore, always the same function object should be re-used when the App component is re-evaluated
+  const toggleParagraphHandler = useCallback(() => {
     setShowParagraph((prevShowParagraph) => !prevShowParagraph);
-  };
+  }, []);
 
   // if the app component is re-evaluted all the child components will be re-evaluated as well
   return (
